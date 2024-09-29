@@ -1,0 +1,21 @@
+<header>
+  <section class="headerSection">
+    <h6>Movies App</h6>
+    <p>
+      <span [matMenuTriggerFor]="menu" [matMenuTriggerData]="genreList">Select Genre</span> {{ selectedGenre }}
+    </p>
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item *ngFor="let genre of genreList" (click)="updateGenre(genre)">
+        <span *ngIf="this.selectedGenre == genre.name">✓</span>{{genre.name}} ({{genre.number}})
+      </button>
+    </mat-menu>
+
+  </section>
+
+</header>
+<section class="content">
+  <app-movie-grid appScrollToBottom (nearEnd)="onScroll()" [genre]="this.genre" [movieList]="this.movieList">
+  </app-movie-grid>
+</section>
+
